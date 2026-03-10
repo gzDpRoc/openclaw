@@ -6,7 +6,7 @@ echo $(pwd)
 # 是否使用 juicefs 挂载
 if [ -n "${juicefs-dir}" ]; then
     echo "检测到 juicefs-dir 环境变量，将挂载 juicefs"
-    RUN /usr/local/bin/juicefs mount ${juicefs-dir} ~/.openclaw
+    /usr/local/bin/juicefs mount ${juicefs-dir} ~/.openclaw
     # 检查是否挂载成功
     if [ $? -eq 0 ]; then
         echo "juicefs 已成功挂载到 ~/.openclaw"
