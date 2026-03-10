@@ -14,7 +14,7 @@ LABEL org.opencontainers.image.base.name="docker.io/library/node:22-bookworm" \
   org.opencontainers.image.description="OpenClaw gateway and CLI runtime container image"
 
 USER root
-RUN npm install -g npm@11.11.0
+RUN npm install -g npm@11.11.0 clawhub
 # RUN npm install -g npm@latest
 
 # Install Bun (required for build scripts)
@@ -118,6 +118,10 @@ ENV NODE_ENV=production
 RUN curl -L https://juicefs.com/static/juicefs -o /usr/local/bin/juicefs
 RUN chmod +x /usr/local/bin/juicefs
 COPY ./start.sh ./
+
+# 安装 httpx
+RUN apt update && apt install -y --no-install-recommends python3-httpx
+# RUN pip3 install httpx
 
 # Security hardening: Run as non-root user
 # The node:22-bookworm image includes a 'node' user (uid 1000)
